@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #171717;
+  --foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  background: var(--background);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 50%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.noselect {
+  user-select: none;
+}
+
+.present {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.dot-carousel {
+  position: relative;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--foreground);
+  color: var(--foreground);
+  box-shadow: 9984px 0 0 0 var(--background), 9999px 0 0 0 var(--background), 10014px 0 0 0 var(--background);
+  animation: dot-carousel 1.5s infinite linear;
+}
+
+@keyframes dot-carousel {
+  0% {
+    box-shadow: 9984px 0 0 -1px var(--background), 9999px 0 0 1px var(--background), 10014px 0 0 -1px var(--background);
+  }
+
+  50% {
+    box-shadow: 10014px 0 0 -1px var(--background), 9984px 0 0 -1px var(--background), 9999px 0 0 1px var(--background);
+  }
+
+  100% {
+    box-shadow: 9999px 0 0 1px var(--background), 10014px 0 0 -1px var(--background), 9984px 0 0 -1px var(--background);
+  }
+}
