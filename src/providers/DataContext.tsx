@@ -21,16 +21,16 @@ type IncidentType = {
 interface ContextType {
     stateChange: boolean;
     setStateChange: React.Dispatch<React.SetStateAction<boolean>>;
-    resolved:number;
-    unresolved:number;
-    incidents:IncidentType[] | null
+    resolved: number;
+    unresolved: number;
+    incidents: IncidentType[] | null
 }
 
 const initialState: ContextType = {
     stateChange: false,
     setStateChange: () => { },
-    resolved:0,
-    unresolved:0,
+    resolved: 0,
+    unresolved: 0,
     incidents: []
 }
 
@@ -44,7 +44,8 @@ export default function DataContextProvider({ children }: { children: React.Reac
     const [unresolved, setUnresolved] = useState<number>(0);
 
     useEffect(() => {
-        fetch('/api/incidents')
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
+        fetch(`${baseUrl}/api/incidents`)
             .then(res => res.json())
             .then(data => {
                 const unres = data.filter((i: IncidentType) => !i.resolved);
