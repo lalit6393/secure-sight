@@ -9,7 +9,7 @@ This project is a technical assessment for a Fullstack Developer Intern role. Th
 Use the following environment variables:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="file:./dev.db" or your database url
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
@@ -97,7 +97,7 @@ npm install
 Create a `.env.local` file in the root directory and add:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="file:./dev.db" or your database url
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
