@@ -41,8 +41,7 @@ export default function IncidentList() {
     }
 
     const resolveIncident = async (id: string) => {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
-        await fetch(`${baseUrl}/api/incidents/${id}/resolve`, { method: 'PATCH' });
+        await fetch(`/api/incidents/${id}/resolve`, { method: 'PATCH' });
         setStateChange(prev => !prev);
         setOpen(false);
     }

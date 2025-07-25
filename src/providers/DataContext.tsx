@@ -44,9 +44,7 @@ export default function DataContextProvider({ children }: { children: React.Reac
     const [unresolved, setUnresolved] = useState<number>(0);
 
     useEffect(() => {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
-        console.log("baseUrl",baseUrl);
-        fetch(`${baseUrl}/api/incidents`)
+        fetch(`/api/incidents`)
             .then(res => res.json())
             .then(data => {
                 const unres = data.filter((i: IncidentType) => !i.resolved);
