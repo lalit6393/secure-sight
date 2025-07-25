@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SecureSight – Fullstack Developer Intern Assessment (July 2025)
 
-## Getting Started
+This project is a technical assessment for a Fullstack Developer Intern role. The goal was to build a CCTV dashboard application for SecureSight, focusing on the core functionality of incident monitoring.
 
-First, run the development server:
+---
+
+## 📁 .env.local
+
+Use the following environment variables:
+
+```env
+DATABASE_URL="file:./dev.db"
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+---
+
+## 🔧 Tech Stack
+
+* **Frontend**: [Next.js 15 (App Router)](https://nextjs.org/), TypeScript, TailwindCSS
+* **Backend**: Prisma ORM
+* **Database**: SQLite (local file)
+* **Other**: Optimistic UI for incident resolution
+
+---
+
+## 📦 Features
+
+### ✅ Mandatory Scope
+
+#### 🔹 API Endpoints
+
+* `GET /api/incidents?resolved=false`: Returns unresolved incidents in newest-first order
+* `PATCH /api/incidents/:id/resolve`: Toggles `resolved` status of a specific incident
+
+#### 🔹 UI
+
+* **Navbar**: Simple top navigation
+* **Incident Player (Left Panel)**:
+
+  * Large static video frame (GIF/MP4/image)
+  * Mini-strip showing thumbnails of two other cameras
+* **Incident List (Right Panel)**:
+
+  * Thumbnail preview
+  * Threat type icon
+  * Camera location
+  * Start–end time
+  * "Resolve" button with fade-out (optimistic UI)
+
+---
+
+## 🧪 Data Model
+
+### 📷 Camera
+
+```ts
+{
+  id: string;
+  name: string;
+  location: string;
+}
+```
+
+### ⚠️ Incident
+
+```ts
+{
+  id: string;
+  cameraId: string;
+  type: string;
+  tsStart: Date;
+  tsEnd: Date;
+  thumbnailUrl: string;
+  resolved: boolean;
+}
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/secure-sight.git
+cd secure-sight
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Set Up Environment
+
+Create a `.env.local` file in the root directory and add:
+
+```env
+DATABASE_URL="file:./dev.db"
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+### 4. Set Up Database
+
+```bash
+npx prisma db push --force-reset
+npx tsx prisma/seed.ts
+```
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Deployment
 
-## Learn More
+You can deploy this project using platforms like Vercel or Netlify. Make sure to set the same environment variables in the deployment environment.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
